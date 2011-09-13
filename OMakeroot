@@ -11,13 +11,13 @@ ProgReport(p, l, exnum) =
 		CProgram($n, $n)
 		$n.tex : $n $n.input
 			echo "\\section{課題$c}" > $n.tex
-			runhaskell ../scripts/Generator.hs $n >> $n.tex
+			runhaskell $(ROOT)/scripts/Generator.hs $n >> $n.tex
 	body.tex : $(addprefix $p, $(addsuffix .tex, $l))
 		cat $(addprefix $p, $(addsuffix .tex, $l)) > body.tex
 	variables.tex :
 		echo "\\newcommand{\exnum}[0]{$(exnum)}" > variables.tex
-	report.tex : ../templates/report.tex
-		cp ../templates/report.tex report.tex
+	report.tex : $(ROOT)/templates/report.tex
+		cp $(ROOT)/templates/report.tex report.tex
 	LATEX = platex --interaction=nonstopmode --kanji=utf8
 	DVIPDFM = dvipdfmx
 	TEXDEPS = body.tex variables.tex
