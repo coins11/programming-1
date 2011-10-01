@@ -1,15 +1,27 @@
 \documentclass{jsarticle}
 
-%\usepackage{listings}
+\usepackage{listings}
 \usepackage{ascmac}
-\usepackage[dvipdfmx]{hyperref}
+\usepackage[dvips]{hyperref}
+\usepackage[dvips]{color}
 
-%\lstset{
-%  basicstyle=\ttfamily,
-%  basicstyle=\color{white}\ttfamily\small,
-%  backgroundcolor=\color{black},
-%  columns=[l]{fullflexible}
-%}
+\lstdefinestyle{program}{
+  basicstyle=\footnotesize\tt,
+  keywordstyle=\bf,
+  identifierstyle=,
+  commentstyle=,
+  stringstyle=,
+  numberstyle=,
+  emphstyle=,
+  numbers=left,
+  frame=trBL
+}
+
+\lstdefinestyle{plain}{
+  basicstyle=\footnotesize\tt,
+  numbers=left,
+  frame=trBL
+}
 
 \input{variables}
 

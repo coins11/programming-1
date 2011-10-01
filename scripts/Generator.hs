@@ -15,26 +15,24 @@ main = do
         name : _ -> main' name
         _ -> return ()
 
-latexsc :: IO () -> IO ()
-latexsc action = do
-    putStrLn $ "\\begin{shadebox}"
-    putStrLn $ "\\begin{verbatim}"
+latexsc :: String -> IO () -> IO ()
+latexsc option action = do
+    putStrLn $ "\\begin{lstlisting}[" ++ option ++ "]"
     action
-    putStrLn $ "\\end{verbatim}"
-    putStrLn $ "\\end{shadebox}"
+    putStrLn $ "\\end{lstlisting}"
 
 main' :: String -> IO ()
 main' name = do
     putStrLn "\\subsection{ソースコード}"
-    latexsc $ readFile (name ++ ".c") >>= putStr
+    latexsc "style=program, language=C" $ readFile (name ++ ".c") >>= putStr
     inputs <-
         zip [1..] <$> unfoldr phi <$> lines <$> readFile (name ++ ".input")
     forM_ inputs $ \(n, input) -> do
         putStrLn $ "\\subsection{実行例" ++ show n ++ "}"
         putStrLn "\\subsubsection{input}"
-        latexsc $ putStr input
+        latexsc "style=plain" $ putStr input
         putStrLn "\\subsubsection{output}"
-        latexsc $ readProcess ("./" ++ name) [] input >>= putStr
+        latexsc "style=plain" $ readProcess ("./" ++ name) [] input >>= putStr
     where
     phi :: [String] -> Maybe (String, [String])
     phi ls = case break (replicate 80 '-' ==) ls of
