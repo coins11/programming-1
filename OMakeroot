@@ -9,7 +9,7 @@ ProgReport(p, l, exnum) =
 	foreach(c => ..., $l)
 		n = $p$c
 		CProgram($n, $n)
-		$n.tex : $n $n.input
+		$n.tex : $n $n.input $(ROOT)/scripts/Generator.hs
 			echo "\\section{課題$c}" > $n.tex
 			runhaskell $(ROOT)/scripts/Generator.hs $n >> $n.tex
 	body.tex : $(addprefix $p, $(addsuffix .tex, $l))

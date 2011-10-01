@@ -1,26 +1,31 @@
 \documentclass{jsarticle}
 
 \usepackage{listings}
-\usepackage{ascmac}
-\usepackage[dvips]{hyperref}
-\usepackage[dvips]{color}
+\usepackage[dvips, usenames]{color}
 
 \lstdefinestyle{program}{
-  basicstyle=\footnotesize\tt,
-  keywordstyle=\bf,
-  identifierstyle=,
-  commentstyle=,
-  stringstyle=,
-  numberstyle=,
+  backgroundcolor=\color{black},
+  basicstyle=\small\tt\color{white},
+  keywordstyle=\color{RedOrange},
+  identifierstyle=\color{LimeGreen},
+  commentstyle=\color{Gray},
+  stringstyle=\color{Cyan},
   emphstyle=,
   numbers=left,
-  frame=trBL
+  numberstyle=\footnotesize\usefont{T1}{phv}{m}{n}\color{black},
+  frame=shadowbox,
+  basewidth={0.55em, 0.45em},
+  lineskip=-0.2zw
 }
 
 \lstdefinestyle{plain}{
-  basicstyle=\footnotesize\tt,
+  backgroundcolor=\color{black},
+  basicstyle=\small\tt\color{white},
   numbers=left,
-  frame=trBL
+  numberstyle=\footnotesize\usefont{T1}{phv}{m}{n}\color{black},
+  frame=shadowbox,
+  basewidth={0.55em, 0.45em},
+  lineskip=-0.2zw
 }
 
 \input{variables}
