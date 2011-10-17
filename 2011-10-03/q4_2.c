@@ -14,34 +14,41 @@ int revputs(char *str, FILE *output)
     return 0;
 }
 
-int main(void)
+char *fgetline(FILE *input)
 {
     char *buf = NULL;
-    size_t len = 0;
+    size_t iter = 0;
     while(1){
-        char c;
-        if(len%32 == 0){
-            char *temp = realloc(buf, len+32);
-            if(!temp){
-                free(buf);
-                return -1;
-            }
-            buf = temp;
+        char *temp = realloc(buf, (iter + 1) * 32 + 1);
+        if(!temp){
+            free(buf);
+            return NULL;
         }
-        c = getc(stdin);
+        buf = temp;
+        fgets(&buf[iter * 32], 32 + 1, input);
         if(ferror(stdin)){
-            return -1;
+            free(buf);
+            return NULL;
         }
-        else if(c == EOF){
-            buf[len] = '\0';
-            break;
+        {
+            size_t len = strlen(&buf[iter * 32]);
+            if(len != 32){
+                if(buf[iter * 32 + len - 1] == '\n'){
+                    buf[iter * 32 + len - 1] = '\0';
+                }
+                return buf;
+            }
         }
-        else{
-            buf[len] = c;
-        }
-        len++;
+        iter++;
     }
-    revputs(buf, stdout);
-    putc('\n', stdout);
+}
+
+int main(void)
+{
+    char *buf = fgetline(stdin);
+    if(buf){
+        revputs(buf, stdout);
+        putc('\n', stdout);
+    }
     return 0;
 }
