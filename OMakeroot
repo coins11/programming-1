@@ -6,7 +6,7 @@ open build/LaTeX
 DefineCommandVars()
 
 ProgReport(p, l, exnum) =
-	foreach(c => ..., $l)
+	foreach(c, $l)
 		n = $p$c
 		CProgram($n, $n)
 		$n.tex : $n $n.input $(ROOT)/scripts/Generator.hs
