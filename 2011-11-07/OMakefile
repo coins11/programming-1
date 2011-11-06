@@ -1,0 +1,10 @@
+
+CFLAGS = -g -Wall
+
+report.pdf : report.ps
+	ps2pdf report.ps
+
+ProgReport(q7_, 1 2 3 4, 7)
+
+.DEFAULT : report.pdf
+

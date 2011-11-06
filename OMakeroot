@@ -23,5 +23,8 @@ ProgReport(p, l, exnum) =
 	TEXDEPS = body.tex variables.tex
 	LaTeXDocument(report, report)
 
-.SUBDIRS: . 2011-09-12 2011-09-22 2011-09-26 2011-10-03 2011-10-24 2011-10-31
+.SUBDIRS: . \
+    2011-09-12 2011-09-22 2011-09-26 \
+    2011-10-03 2011-10-24 2011-10-31 \
+    2011-11-07
 
