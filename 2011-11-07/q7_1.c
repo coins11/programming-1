@@ -32,7 +32,7 @@ char *fgetline(FILE *input)
     }
 }
 
-char *string_cotcat(const char *str1, const char *str2)
+char *string_concat(const char *str1, const char *str2)
 {
     size_t len1 = strlen(str1), len2 = strlen(str2);
     char *result = malloc(len1+len2+1);
@@ -49,7 +49,7 @@ int main(void)
     char *str1 = fgetline(stdin);
     char *str2 = fgetline(stdin);
     if(str1 && str2){
-        char *result = string_cotcat(str1, str2);
+        char *result = string_concat(str1, str2);
         if(result){
             fputs(result, stdout);
             fputc('\n', stdout);
