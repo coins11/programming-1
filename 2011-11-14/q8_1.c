@@ -8,7 +8,7 @@ typedef struct data {
 
 int compare(const void *a, const void *b)
 {
-    return ((data_t *)a)->score - ((data_t *)b)->score;
+    return ((data_t *)b)->score - ((data_t *)a)->score;
 }
 
 int main(void)
